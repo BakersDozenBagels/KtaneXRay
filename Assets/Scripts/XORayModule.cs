@@ -42,8 +42,7 @@ public class XORayModule : XRayModuleBase
         Log("Using ruleseed {0}.", rng.Seed);
 
         var icons = Enumerable
-            .Range(0, 110)
-            .Except(new int[] { 3, 24, 27, 30, 32, 39, 43, 52, 54, 98, 106 })
+            .Range(0, 16)
             .OrderBy(x => rng.NextDouble())
             .Take(10)
             .ToArray();
@@ -65,10 +64,10 @@ public class XORayModule : XRayModuleBase
         Log("Press buttons {0} and {1}.", _answer1 + 1, _answer2 + 1);
 
         _symbolCenters = new Vector4(
-                ((icons[symbol1] % 11) + 0.5f) / 11f,
-                1f - (((icons[symbol1] / 11) + 0.5f) / 11f),
-                ((icons[symbol2] % 11) + 0.5f) / 11f,
-                1f - (((icons[symbol2] / 11) + 0.5f) / 11f)
+                ((icons[symbol1] % 4) + 0.5f) / 4f,
+                1f - (((icons[symbol1] / 4) + 0.5f) / 4f),
+                ((icons[symbol2] % 4) + 0.5f) / 4f,
+                1f - (((icons[symbol2] / 4) + 0.5f) / 4f)
             );
 
         StartCoroutine(Animate());
@@ -83,12 +82,12 @@ public class XORayModule : XRayModuleBase
             time += Time.deltaTime;
             if (time >= Duration)
             {
-                const float TwoPi = 2f * Mathf.PI;
+                const float PiOverTwo = 0.5f * Mathf.PI;
 
-                var angle1 = Random.Range(0f, TwoPi);
-                var angle2 = Random.Range(0f, TwoPi);
+                var angle1 = Random.Range(0,4) * PiOverTwo;
+                var angle2 = Random.Range(0,4) * PiOverTwo;
 
-                const float Scale = 1.4142135623730950488016887242097f / 22f;
+                const float Scale = 1.4142135623730950488016887242097f / 6f;
 
                 Matrix4x4 matrix = Matrix4x4.zero;
 
