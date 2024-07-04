@@ -1,0 +1,10 @@
+{
+  "name": "XORay-Editor",
+  "references": [
+    "XORay"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": []
+}
